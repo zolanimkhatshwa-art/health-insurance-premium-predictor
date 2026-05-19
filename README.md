@@ -104,3 +104,19 @@ GitHub: [@zolanimkhatshwa-art](https://github.com/zolanimkhatshwa-art)
 
 - Dataset: [Teertha Biswas - Kaggle](https://www.kaggle.com/datasets/teertha/ushealthinsurancedataset)
 - Inspired by: [IBM Telco Customer Churn on ICP4D](https://github.com/IBM/telco-customer-churn-on-icp4d)
+
+---
+
+## Live Demo
+
+**Deployed on AWS Elastic Beanstalk:**
+
+http://health-insurance-env.eba-xxxxxxxx.us-east-1.elasticbeanstalk.com
+
+---
+
+## Live Demo
+
+**Deployed on AWS Elastic Beanstalk:**
+
+http://health-insurance-env.eba-gsunhtm6.us-east-1.elasticbeanstalk.com/
