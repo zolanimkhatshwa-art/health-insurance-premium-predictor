@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Insurance Premium Predictor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.3s;
+        }
+
+        button:hover { opacity: 0.9; }
+
+        .result {
+            margin-top: 24px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .result h2 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .result .amount {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .result .risk {
+            margin-top: 8px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 Premium Predictor</h1>
+        <p class="subtitle">Enter your details to estimate your annual insurance premium</p>
+
+        <form action="/predict" method="POST">
+
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" min="18" max="100" placeholder="e.g. 35" required>
+            </div>
+
+            <div class="form-group">
+                <label>Sex</label>
+                <select name="sex">
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>BMI</label>
+                <input type="number" name="bmi" step="0.1" min="10" max="60" placeholder="e.g. 27.5" required>
+            </div>
+
+            <div class="form-group">
+                <label>Number of Children</label>
+                <input type="number" name="children" min="0" max="10" placeholder="e.g. 2" required>
+            </div>
+
+            <div class="form-group">
+                <label>Smoker</label>
+                <select name="smoker">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Region</label>
+                <select name="region">
+                    <option value="0">Northeast</option>
+                    <option value="1">Northwest</option>
+                    <option value="2">Southeast</option>
+                    <option value="3">Southwest</option>
+                </select>
+            </div>
+
+            <button type="submit">🔍 Predict My Premium</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h2>Estimated Annual Premium</h2>
+            <div class="amount">{{ prediction }}</div>
+            <div class="risk">{{ risk }}</div>
+        </div>
+        {% endif %}
+
+        <p class="footer">Powered by Gradient Boosting ML Model</p>
+    </div>
+</body>
+</html>
